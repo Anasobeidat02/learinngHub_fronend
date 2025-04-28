@@ -3,7 +3,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { ListChecks, Video, Users } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import { API_URL, getAuthToken } from './utils';
+import { API_URL, getAuthToken } from '@/lib/api/utils.ts';
 const AdminDashboard = () => {
   // Mock data - in a real app, this would come from an API call
 // استخدام useState لتخزين البيانات
