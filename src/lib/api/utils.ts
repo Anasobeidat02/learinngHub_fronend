@@ -3,7 +3,7 @@
 export const getAuthToken = () => localStorage.getItem('adminToken');
 
 // API Base URL - can be configured based on environment
-export const API_URL = 'http://localhost:5000/api';
+export const API_URL = 'https://learinng-hub-backend.vercel.app';
 
 // Helper for handling tags
 export const formatTags = (tags: string[] | string | undefined): string[] => {
