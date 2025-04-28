@@ -84,7 +84,7 @@ const AdminUsers = () => {
         role: formData.role
       };
 
-      const response = await fetch('https://learinnghub-backend.onrender.com//api/admins', {
+      const response = await fetch('https://learinnghub-backend.onrender.com/api/admins', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
