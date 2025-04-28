@@ -3,7 +3,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { ListChecks, Video, Users } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import { API_URL, getAuthToken } from '@/lib/api/utils.ts';
+
 const AdminDashboard = () => {
   // Mock data - in a real app, this would come from an API call
 // استخدام useState لتخزين البيانات
@@ -18,7 +18,7 @@ const [error, setError] = useState(null);
   useEffect(() => {
     const fetchStats = async () => {
       try {
-        const response = await fetch(`${API_URL}/admins/stats`, {
+        const response = await fetch('https://learinnghub-backend.onrender.com/api/admins/stats', {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
