@@ -324,7 +324,7 @@ const Quiz = () => {
                   value={
                     selectedChoiceIndex !== undefined
                       ? selectedChoiceIndex.toString()
-                      : undefined
+                      : ""
                   }
                   onValueChange={(value) => handleAnswerSelect(parseInt(value))}
                   className="space-y-3"
