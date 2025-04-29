@@ -77,7 +77,7 @@ export const allVideos: Video[] = [
 export const featuredProjects: Project[] = [
   {
     id: '1',
-    name: 'Find-programmer',
+    name: 'Find programmer',
     description: 'A developer-matching platform helping users find programmers via GitHub, Upwork, and referrals built with MERN stack.',
     imageUrl: '/Screenshot 2025-04-29 193932.png',
     githubUrl: 'https://github.com/Anasobeidat02/Find-programmer',
@@ -87,11 +87,11 @@ export const featuredProjects: Project[] = [
   },
   {
     id: '2',
-    name: 'Task Management App',
-    description: 'A task management application with user authentication.',
+    name: 'Smart Fuel Station',
+    description: 'web application for managing fuel stations, including user authentication, fuel management, and reporting.',
     imageUrl: '/placeholder.svg',
-    githubUrl: 'https://github.com/Anasobeidat02/task-manager',
-    technologies: ['React', 'Firebase', 'Tailwind CSS'],
+    githubUrl: 'https://github.com/Anasobeidat02/car-wash',
+    technologies: ['HTML', 'CSS',  'JavaScript','Node.js', 'Express', 'MongoDB'],
     featured: true
   },
   {
