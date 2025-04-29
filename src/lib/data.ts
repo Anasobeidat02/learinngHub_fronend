@@ -77,12 +77,12 @@ export const allVideos: Video[] = [
 export const featuredProjects: Project[] = [
   {
     id: '1',
-    name: 'E-commerce Platform',
-    description: 'A full-stack e-commerce platform built with MERN stack.',
-    imageUrl: '/placeholder.svg',
-    githubUrl: 'https://github.com/Anasobeidat02/e-commerce',
-    liveUrl: 'https://e-commerce-demo.example.com',
-    technologies: ['React', 'Node.js', 'Express', 'MongoDB', 'Redux'],
+    name: 'Find-programmer',
+    description: 'A developer-matching platform helping users find programmers via GitHub, Upwork, and referrals built with MERN stack.',
+    imageUrl: '/frontEnd/public/Screenshot 2025-04-29 193932.png',
+    githubUrl: 'https://github.com/Anasobeidat02/Find-programmer',
+    
+    technologies: ['React', 'Node.js', 'Express', 'MongoDB'],
     featured: true
   },
   {
