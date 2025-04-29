@@ -79,7 +79,7 @@ export const featuredProjects: Project[] = [
     id: '1',
     name: 'Find-programmer',
     description: 'A developer-matching platform helping users find programmers via GitHub, Upwork, and referrals built with MERN stack.',
-    imageUrl: '/frontEnd/public/Screenshot 2025-04-29 193932.png',
+    imageUrl: '/Screenshot 2025-04-29 193932.png',
     githubUrl: 'https://github.com/Anasobeidat02/Find-programmer',
     
     technologies: ['React', 'Node.js', 'Express', 'MongoDB'],
