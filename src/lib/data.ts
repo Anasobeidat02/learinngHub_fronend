@@ -114,17 +114,17 @@ export const socialLinks: SocialLink[] = [
   },
   {
     name: 'YouTube',
-    url: 'https://youtube.com/@anas-obeidat',
+    url: 'https://youtube.com/@anas_obeidat',
     icon: 'youtube'
   },
   {
     name: 'Twitter',
-    url: 'https://twitter.com/anasobeidat',
+    url: 'https://x.com/anasob6',
     icon: 'twitter'
   },
   {
     name: 'LinkedIn',
-    url: 'https://linkedin.com/in/anasobeidat',
+    url: 'https://www.linkedin.com/in/anas-m-obeidat/',
     icon: 'linkedin'
   }
 ];
@@ -132,7 +132,7 @@ export const socialLinks: SocialLink[] = [
 export const skills = [
   {
     category: 'Frontend',
-    technologies: ['React.js', 'Next.js', 'TypeScript', 'Tailwind CSS', 'Redux']
+    technologies: ['React.js', 'Next.js', 'TypeScript', 'Tailwind CSS']
   },
   {
     category: 'Backend',
@@ -140,7 +140,7 @@ export const skills = [
   },
   {
     category: 'Database',
-    technologies: ['MongoDB', 'PostgreSQL', 'Redis', 'Firebase']
+    technologies: ['MongoDB',  'Firebase']
   },
   {
     category: 'DevOps',
