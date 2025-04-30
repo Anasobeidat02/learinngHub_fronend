@@ -117,78 +117,9 @@ const VideoDetail = () => {
               <VideoPlayer video={video} />
               
               {/* Comments section */}
-              <div className="mt-12">
-                <h3 className="text-xl font-display font-semibold mb-6">Comments ({comments.length})</h3>
-                
-                {/* Add comment form */}
-                <form onSubmit={handleCommentSubmit} className="mb-8">
-                  <Textarea
-                    placeholder="Add a comment..."
-                    value={commentText}
-                    onChange={(e) => setCommentText(e.target.value)}
-                    rows={3}
-                    className="mb-3"
-                  />
-                  <Button 
-                    type="submit" 
-                    disabled={isSubmitting || !commentText.trim()}
-                  >
-                    {isSubmitting ? 'Posting...' : 'Post Comment'}
-                  </Button>
-                </form>
-                
-                {/* Comments list */}
-                {comments.length > 0 ? (
-                  <div className="space-y-6">
-                    {comments.map((comment) => (
-                      <Card key={comment.id}>
-                        <CardContent className="p-4">
-                          <div className="flex items-start gap-3">
-                            <div className="w-10 h-10 rounded-full bg-gray-200 flex-shrink-0">
-                              {comment.user.name.charAt(0)}
-                            </div>
-                            <div>
-                              <div className="flex items-center gap-2 mb-1">
-                                <span className="font-semibold">{comment.user.name}</span>
-                                <span className="text-xs text-gray-500">
-                                  {new Date(comment.createdAt).toLocaleDateString()}
-                                </span>
-                              </div>
-                              <p className="text-gray-700">{comment.content}</p>
-                              
-                              {/* Replies */}
-                              {comment.replies && comment.replies.length > 0 && (
-                                <div className="mt-4 pl-4 border-l-2 border-gray-100 space-y-4">
-                                  {comment.replies.map((reply) => (
-                                    <div key={reply.id} className="flex items-start gap-3">
-                                      <div className="w-8 h-8 rounded-full bg-gray-200 flex-shrink-0 text-sm flex items-center justify-center">
-                                        {reply.user.name.charAt(0)}
-                                      </div>
-                                      <div>
-                                        <div className="flex items-center gap-2 mb-1">
-                                          <span className="font-semibold">{reply.user.name}</span>
-                                          <span className="text-xs text-gray-500">
-                                            {new Date(reply.createdAt).toLocaleDateString()}
-                                          </span>
-                                        </div>
-                                        <p className="text-gray-700">{reply.content}</p>
-                                      </div>
-                                    </div>
-                                  ))}
-                                </div>
-                              )}
-                            </div>
-                          </div>
-                        </CardContent>
-                      </Card>
-                    ))}
-                  </div>
-                ) : (
-                  <p className="text-gray-500 text-center py-6">
-                    No comments yet. Be the first to comment!
-                  </p>
-                )}
-              </div>
+              
+
+
             </div>
             
             {/* Sidebar */}
