@@ -41,7 +41,7 @@ const Index = () => {
               </Link>
               <Link to="/programming-languages">
                 <Button size="lg" variant="outline" className="border-white text-secondary-foreground hover:bg-white/20 px-6">
-                  Programming Languages
+                Getting Started
                 </Button>
               </Link>
               <Link to="/quiz">
