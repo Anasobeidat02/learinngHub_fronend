@@ -25,7 +25,7 @@ const Hero = () => {
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold mb-6 leading-tight">
               Building <span className="text-gradient">Digital</span> Experiences & Sharing Knowledge
             </h1>
-            <p className="text-lg text-gray-600 mb-8 max-w-lg">
+            <p className="text-lg text-gray-600 mb-8 max-w-lg" dir="rtl">
               مرحبًا! أنا أنس عبيدات، مطور ويب ومعلم متحمس لمشاركة خبراتي في عالم البرمجة وتطوير الويب مع المجتمع العربي.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
@@ -47,7 +47,7 @@ const Hero = () => {
                    className="text-gray-500 hover:text-primary transition-colors">
                   GitHub
                 </a>
-                <a href="https://youtube.com/@anas-obeidat" target="_blank" rel="noopener noreferrer" 
+                <a href="https://youtube.com/@anas_obeidat" target="_blank" rel="noopener noreferrer" 
                    className="text-gray-500 hover:text-primary transition-colors">
                   YouTube
                 </a>
