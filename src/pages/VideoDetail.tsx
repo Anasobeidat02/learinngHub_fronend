@@ -117,7 +117,6 @@ const VideoDetail = () => {
               <VideoPlayer video={video} />
               
               {/* Comments section */}
-              
               <div className="mt-12">
                 <h3 className="text-xl font-display font-semibold mb-6">Comments ({comments.length})</h3>
                 
@@ -190,7 +189,6 @@ const VideoDetail = () => {
                   </p>
                 )}
               </div>
-
             </div>
             
             {/* Sidebar */}

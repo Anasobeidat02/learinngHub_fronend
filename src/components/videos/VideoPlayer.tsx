@@ -6,6 +6,7 @@ import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css"; // استيراد أنماط react-toastify
 import { FaCopy } from "react-icons/fa"; // استيراد أيقونة النسخ من react-icons
 
+
 interface VideoPlayerProps {
   video: Video;
 }
@@ -46,6 +47,7 @@ const VideoPlayer = ({ video }: VideoPlayerProps) => {
 
     return () => clearTimeout(timer);
   }, [video.id, video.youtubeUrl]);
+
 
   const handleCopy = async () => {
     try {
@@ -138,7 +140,7 @@ const VideoPlayer = ({ video }: VideoPlayerProps) => {
           </div>
         </div>
 
-        <div className="prose max-w-none">
+        <div className="prose max-w-none" dir="rtl">
           <p
             className={`text-sm "text-gray-600" ${
               isExpanded ? "" : "line-clamp-5"
@@ -182,7 +184,7 @@ const VideoPlayer = ({ video }: VideoPlayerProps) => {
           </CardContent>
         </Card>
       )}
-      <ToastContainer />
+       <ToastContainer />
     </div>
   );
 };

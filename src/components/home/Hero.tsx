@@ -47,7 +47,7 @@ const Hero = () => {
                    className="text-gray-500 hover:text-primary transition-colors">
                   GitHub
                 </a>
-                <a href="https://youtube.com/@anas_obeidat" target="_blank" rel="noopener noreferrer" 
+                <a href="https://youtube.com/@anas-obeidat" target="_blank" rel="noopener noreferrer" 
                    className="text-gray-500 hover:text-primary transition-colors">
                   YouTube
                 </a>
