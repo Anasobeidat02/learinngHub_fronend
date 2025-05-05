@@ -77,9 +77,9 @@ export const allVideos: Video[] = [
 export const featuredProjects: Project[] = [
   {
     id: '1',
-    name: 'E-commerce Platform',
-    description: 'A full-stack e-commerce platform built with MERN stack.',
-    imageUrl: '/placeholder.svg',
+    name: 'Find Programmer',
+    description: 'A developer-matching platform helping users find programmers via GitHub, Upwork, and referrals',
+    imageUrl: '/public/Screenshot 2025-04-29 193932.png',
     githubUrl: 'https://github.com/Anasobeidat02/e-commerce',
     liveUrl: 'https://e-commerce-demo.example.com',
     technologies: ['React', 'Node.js', 'Express', 'MongoDB', 'Redux'],
@@ -87,8 +87,8 @@ export const featuredProjects: Project[] = [
   },
   {
     id: '2',
-    name: 'Task Management App',
-    description: 'A task management application with user authentication.',
+    name: 'Smart fuel station',
+    description: 'A smart fuel station management system with real-time monitoring.',
     imageUrl: '/placeholder.svg',
     githubUrl: 'https://github.com/Anasobeidat02/task-manager',
     technologies: ['React', 'Firebase', 'Tailwind CSS'],
@@ -114,17 +114,17 @@ export const socialLinks: SocialLink[] = [
   },
   {
     name: 'YouTube',
-    url: 'https://youtube.com/@anas-obeidat',
+    url: 'https://youtube.com/@anas_obeidat',
     icon: 'youtube'
   },
   {
     name: 'Twitter',
-    url: 'https://twitter.com/anasobeidat',
+    url: 'https://x.com/anasob6?t=iRz-cJRgzg-KCAQBHfaYQg&s=09',
     icon: 'twitter'
   },
   {
     name: 'LinkedIn',
-    url: 'https://linkedin.com/in/anasobeidat',
+    url: 'https://www.linkedin.com/in/anas-m-obeidat?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app',
     icon: 'linkedin'
   }
 ];
@@ -132,7 +132,7 @@ export const socialLinks: SocialLink[] = [
 export const skills = [
   {
     category: 'Frontend',
-    technologies: ['React.js', 'Next.js', 'TypeScript', 'Tailwind CSS', 'Redux']
+    technologies: ['React.js', 'Next.js', 'TypeScript', 'Tailwind CSS']
   },
   {
     category: 'Backend',
@@ -140,7 +140,7 @@ export const skills = [
   },
   {
     category: 'Database',
-    technologies: ['MongoDB', 'PostgreSQL', 'Redis', 'Firebase']
+    technologies: ['MongoDB', 'PostgreSQL', 'Redis']
   },
   {
     category: 'DevOps',
