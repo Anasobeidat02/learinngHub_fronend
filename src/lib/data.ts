@@ -97,7 +97,7 @@ export const featuredProjects: Project[] = [
     id: '3',
     name: 'Real-time Chat Application',
     description: 'A real-time chat application using Socket.io.',
-    imageUrl: 'none',
+    imageUrl: '/placeholder.svg',
     githubUrl: 'https://github.com/Anasobeidat02/chat-app',
     technologies: ['Node.js', 'Express', 'Socket.io', 'React'],
     featured: true
