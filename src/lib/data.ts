@@ -79,8 +79,8 @@ export const featuredProjects: Project[] = [
     id: '1',
     name: 'Find Programmer',
     description: 'A developer-matching platform helping users find programmers via GitHub, Upwork, and referrals',
-    imageUrl: '/frontend/public/Screenshot 2025-04-29 193932.png',
-    githubUrl: 'https://github.com/Anasobeidat02/e-commerce',
+    imageUrl: '/Screenshot 2025-04-29 193932.png',
+    githubUrl: 'https://github.com/Anasobeidat02/Find-programmer',
     technologies: ['React', 'Node.js', 'Express', 'MongoDB'],
     featured: true
   },
