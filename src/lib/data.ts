@@ -79,7 +79,7 @@ export const featuredProjects: Project[] = [
     id: '1',
     name: 'Find Programmer',
     description: 'A developer-matching platform helping users find programmers via GitHub, Upwork, and referrals',
-    imageUrl: 'frontend/public/Screenshot 2025-04-29 193932.png',
+    imageUrl: '/frontend/public/Screenshot 2025-04-29 193932.png',
     githubUrl: 'https://github.com/Anasobeidat02/e-commerce',
     technologies: ['React', 'Node.js', 'Express', 'MongoDB'],
     featured: true
@@ -89,7 +89,7 @@ export const featuredProjects: Project[] = [
     name: 'Smart fuel station',
     description: 'A smart fuel station management system with real-time monitoring.',
     imageUrl: '/placeholder.svg',
-    githubUrl: 'https://github.com/Anasobeidat02/task-manager',
+    githubUrl: 'https://github.com/Anasobeidat02/car-wash',
     technologies: ['React', 'Node.js', 'Express', 'Tailwind CSS'],
     featured: true
   },
