@@ -39,7 +39,7 @@ interface Library {
 }
 
 interface Article {
-  id: string;
+  _id: string;
   title: string;
   slug: string;
   description: string;
@@ -134,10 +134,17 @@ const AdminArticles = () => {
   };
 
   const handleUpdateArticle = async (formData: any) => {
-    if (!currentArticle?.id) return;
-
+    if (!currentArticle?._id) {
+      console.log("No current article ID found");
+      return;
+    }
+  
+    console.log("handleUpdateArticle called with formData:", formData);
+    console.log("Article ID:", currentArticle._id);
+  
     try {
-      await updateArticle(currentArticle.id, formData);
+      const response = await updateArticle(currentArticle._id, formData);
+      console.log("updateArticle response:", response);
       setShowDialog(false);
       setCurrentArticle(undefined);
       toast({
@@ -149,7 +156,7 @@ const AdminArticles = () => {
       console.error("Error updating article:", error);
       toast({
         title: "Error",
-        description: "Failed to update article",
+        description: `Failed to update article: ${error.message}`,
         variant: "destructive",
       });
     }
@@ -394,13 +401,15 @@ const AdminArticles = () => {
 
       {/* Create/Edit Dialog */}
       <Dialog open={showDialog} onOpenChange={closeDialog}>
-        <DialogContent className="max-w-3xl max-h-[90vh] overflow-y-auto">
+        <DialogContent className="max-w-3xl max-h-[90vh] overflow-y-auto" aria-describedby="dialog-description">
           <DialogHeader>
             <DialogTitle>
               {isEditing ? "Edit Article" : "Create New Article"}
             </DialogTitle>
+            <p id="dialog-description" className="sr-only">
+              Form to {isEditing ? "edit" : "create"} an article
+            </p>
           </DialogHeader>
-
           <ArticleForm
             initialData={currentArticle}
             onSubmit={isEditing ? handleUpdateArticle : handleCreateArticle}

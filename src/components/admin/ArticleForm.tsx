@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { useToast } from '@/components/ui/use-toast';
 import { Input } from '@/components/ui/input';
@@ -115,21 +114,28 @@ const ArticleForm: React.FC<ArticleFormProps> = ({ initialData, onSubmit, isEdit
     e.preventDefault();
     setIsSubmitting(true);
   
-    console.log('Form Data being sent:', formData); // اطبع البيانات
+    const filteredFormData: ArticleFormData = {
+      title: formData.title,
+      description: formData.description,
+      content: formData.content,
+      requirements: formData.requirements,
+      useCases: formData.useCases,
+      libraries: formData.libraries.filter(
+        lib => lib.name.trim() && lib.description.trim()
+      ),
+      language: formData.language,
+      icon: formData.icon,
+      color: formData.color
+    };
+  
+    console.log('Filtered Form Data being sent:', filteredFormData);
   
     try {
-      await onSubmit(formData);
-      toast({
-        title: "Success",
-        description: `Article ${isEditing ? 'updated' : 'created'} successfully`,
-      });
+      await onSubmit(filteredFormData);
+      // Remove the Toast from here
     } catch (error) {
       console.error('Error submitting form:', error);
-      toast({
-        title: "Error",
-        description: `Failed to ${isEditing ? 'update' : 'create'} article`,
-        variant: "destructive",
-      });
+      // Remove the Toast from here
     } finally {
       setIsSubmitting(false);
     }

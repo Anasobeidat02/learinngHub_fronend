@@ -55,7 +55,11 @@ export const createArticle = async (articleData: any) => {
 // Update article (admin only)
 export const updateArticle = async (id: string, articleData: any) => {
   const token = getAuthToken();
+  console.log("Token in updateArticle:", token);
   if (!token) throw new Error('Not authenticated');
+
+  console.log("Request URL:", `${API_URL}/articles/${id}`);
+  console.log("Request body:", articleData);
 
   try {
     const response = await fetch(`${API_URL}/articles/${id}`, {
@@ -67,17 +71,21 @@ export const updateArticle = async (id: string, articleData: any) => {
       body: JSON.stringify(articleData)
     });
     
+    console.log("Response status:", response.status);
+    const result = await response.json();
+    console.log("Response body:", result);
+    
     if (!response.ok) {
-      const errorData = await response.json();
-      throw new Error(errorData.message || 'Failed to update article');
+      throw new Error(result.message || 'Failed to update article');
     }
     
-    return await response.json();
+    return result;
   } catch (error) {
     console.error(`Error updating article ${id}:`, error);
     throw error;
   }
 };
+
 
 // Delete article (admin only)
 export const deleteArticle = async (id: string) => {
