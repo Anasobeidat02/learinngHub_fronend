@@ -114,7 +114,9 @@ const ArticleForm: React.FC<ArticleFormProps> = ({ initialData, onSubmit, isEdit
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-
+  
+    console.log('Form Data being sent:', formData); // اطبع البيانات
+  
     try {
       await onSubmit(formData);
       toast({
