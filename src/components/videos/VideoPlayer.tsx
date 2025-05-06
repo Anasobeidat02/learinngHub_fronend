@@ -167,7 +167,7 @@ const VideoPlayer = ({ video }: VideoPlayerProps) => {
             <h2 className="text-xl font-display font-semibold mb-4">
               Additional Resources
             </h2>
-            <div className="prose max-w-none">
+            <div className="prose max-w-none" >
               <div className="flex items-center gap-2 mb-2">
                 <button
                   onClick={handleCopy}
@@ -177,7 +177,7 @@ const VideoPlayer = ({ video }: VideoPlayerProps) => {
                   Copy Text
                 </button>
               </div>
-              <pre className="bg-gray-50 p-4 rounded-md overflow-auto">
+              <pre className="bg-gray-50 p-4 rounded-md overflow-auto" dir="rtl">
                 {video.content}
               </pre>
             </div>
