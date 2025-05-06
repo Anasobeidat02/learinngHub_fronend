@@ -1,4 +1,4 @@
-
+import AdComponent from "../adds/PicAdComponent";
 const BioSection = () => {
   return (
     <section className="container-custom py-12">
