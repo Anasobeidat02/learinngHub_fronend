@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from "react";
 import { Video } from "@/lib/types";
 import { Badge } from "@/components/ui/badge";
@@ -5,7 +6,9 @@ import { Card, CardContent } from "@/components/ui/card";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css"; // استيراد أنماط react-toastify
 import { FaCopy } from "react-icons/fa"; // استيراد أيقونة النسخ من react-icons
-
+import hljs from "highlight.js";
+import "highlight.js/styles/default.css"; // أو نمط آخر مثل 'atom-one-dark.css'
+import Markdown from 'react-markdown';
 
 interface VideoPlayerProps {
   video: Video;
@@ -14,15 +17,38 @@ interface VideoPlayerProps {
 const VideoPlayer = ({ video }: VideoPlayerProps) => {
   const [isLoading, setIsLoading] = useState(true);
   const [videoId, setVideoId] = useState<string | null>(null);
-
   const [isExpanded, setIsExpanded] = useState(false);
 
   const toggleDescription = () => {
     setIsExpanded(!isExpanded);
   };
+
   const isArabic = (text) => {
-    const arabicRegex = /[\u0600-\u06FF]/;
-    return arabicRegex.test(text);
+    const arabicRegex = /[\u0600-\u06FF]/g;
+    const arabicCount = (text.match(arabicRegex) || []).length;
+    const totalLength = text.length;
+    return totalLength > 0 && arabicCount / totalLength > 0.5; // أكثر من 50% أحرف عربية
+  };
+
+  // مكون مخصص لعنصر code لتطبيق Highlight.js
+  const CodeBlock = ({ className, children }) => {
+    const language = className?.replace('language-', '') || 'text';
+    useEffect(() => {
+      document.querySelectorAll('pre code').forEach((block) => {
+        hljs.highlightElement(block);
+      });
+    }, [children]);
+
+    return (
+      <pre
+        className={`bg-gray-50 p-4 rounded-md overflow-auto ${
+          isArabic(children) ? 'text-right' : 'text-left'
+        }`}
+        dir={isArabic(children) ? 'rtl' : 'ltr'}
+      >
+        <code className={`language-${language}`}>{children}</code>
+      </pre>
+    );
   };
 
   useEffect(() => {
@@ -51,7 +77,6 @@ const VideoPlayer = ({ video }: VideoPlayerProps) => {
 
     return () => clearTimeout(timer);
   }, [video.id, video.youtubeUrl]);
-
 
   const handleCopy = async () => {
     try {
@@ -165,37 +190,41 @@ const VideoPlayer = ({ video }: VideoPlayerProps) => {
       </div>
 
       {/* Additional Content Section */}
-{/* Additional Content Section */}
-{video.content && (
-  <Card className="mt-8">
-    <CardContent className="pt-6">
-      <h2 className="text-xl font-display font-semibold mb-4">
-        Additional Resources
-      </h2>
-      <div className="prose max-w-none">
-        <div className="flex items-center gap-2 mb-2">
-          <button
-            onClick={handleCopy}
-            className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors"
-          >
-            <FaCopy className="w-5 h-5" />
-            Copy Text
-          </button>
-        </div>
-        <pre
-          className="bg-gray-50 p-4 rounded-md overflow-auto"
-          style={{
-            direction: isArabic(video.content) ? 'rtl' : 'ltr',
-            textAlign: isArabic(video.content) ? 'right' : 'left',
-          }}
-        >
-          {video.content}
-        </pre>
-      </div>
-    </CardContent>
-  </Card>
-)}
-       <ToastContainer />
+      {video.content && (
+        <Card className="mt-8">
+          <CardContent className="pt-6">
+            <h2 className="text-xl font-display font-semibold mb-4">
+              Additional Resources
+            </h2>
+            <div className="prose max-w-none">
+              <div className="flex items-center gap-2 mb-2">
+                <button
+                  onClick={handleCopy}
+                  className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors"
+                >
+                  <FaCopy className="w-5 h-5" />
+                  Copy Text
+                </button>
+              </div>
+              <div
+                className={`${
+                  isArabic(video.content) ? 'text-right' : 'text-left'
+                }`}
+                dir={isArabic(video.content) ? 'rtl' : 'ltr'}
+              >
+                <Markdown
+                  components={{
+                    code: CodeBlock, // استخدام المكون المخصص للكود
+                  }}
+                >
+                  {video.content}
+                </Markdown>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+      )}
+      <ToastContainer />
     </div>
   );
 };
