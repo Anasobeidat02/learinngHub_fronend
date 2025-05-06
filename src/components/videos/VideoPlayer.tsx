@@ -20,6 +20,10 @@ const VideoPlayer = ({ video }: VideoPlayerProps) => {
   const toggleDescription = () => {
     setIsExpanded(!isExpanded);
   };
+  const isArabic = (text) => {
+    const arabicRegex = /[\u0600-\u06FF]/;
+    return arabicRegex.test(text);
+  };
 
   useEffect(() => {
     // Extract YouTube video ID from URL
@@ -161,29 +165,36 @@ const VideoPlayer = ({ video }: VideoPlayerProps) => {
       </div>
 
       {/* Additional Content Section */}
-      {video.content && (
-        <Card className="mt-8">
-          <CardContent className="pt-6">
-            <h2 className="text-xl font-display font-semibold mb-4">
-              Additional Resources
-            </h2>
-            <div className="prose max-w-none" >
-              <div className="flex items-center gap-2 mb-2">
-                <button
-                  onClick={handleCopy}
-                  className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors"
-                >
-                  <FaCopy className="w-5 h-5" />
-                  Copy Text
-                </button>
-              </div>
-              <pre className="bg-gray-50 p-4 rounded-md overflow-auto" dir="rtl">
-                {video.content}
-              </pre>
-            </div>
-          </CardContent>
-        </Card>
-      )}
+{/* Additional Content Section */}
+{video.content && (
+  <Card className="mt-8">
+    <CardContent className="pt-6">
+      <h2 className="text-xl font-display font-semibold mb-4">
+        Additional Resources
+      </h2>
+      <div className="prose max-w-none">
+        <div className="flex items-center gap-2 mb-2">
+          <button
+            onClick={handleCopy}
+            className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors"
+          >
+            <FaCopy className="w-5 h-5" />
+            Copy Text
+          </button>
+        </div>
+        <pre
+          className="bg-gray-50 p-4 rounded-md overflow-auto"
+          style={{
+            direction: isArabic(video.content) ? 'rtl' : 'ltr',
+            textAlign: isArabic(video.content) ? 'right' : 'left',
+          }}
+        >
+          {video.content}
+        </pre>
+      </div>
+    </CardContent>
+  </Card>
+)}
        <ToastContainer />
     </div>
   );
