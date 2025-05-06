@@ -26,7 +26,6 @@ import QuizResult from "@/components/quiz/QuizResult";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { getQuestionLanguages, getQuestionsByLanguage } from "@/lib/api";
-import ManyAdRelaxed from "@/components/adds/manyAdRelaxed"; // استيراد الإعلان
 
 const formSchema = z.object({
   language: z.string().min(1, "Please select a language"),
@@ -42,7 +41,9 @@ const Quiz = () => {
   const [questionCount, setQuestionCount] = useState<string>("");
   const [isStarted, setIsStarted] = useState(false);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
-  const [selectedAnswers, setSelectedAnswers] = useState<Record<string, number>>({});
+  const [selectedAnswers, setSelectedAnswers] = useState<
+    Record<string, number>
+  >({});
   const [quizQuestions, setQuizQuestions] = useState<any[]>([]);
   const [isFinished, setIsFinished] = useState(false);
   const [quizStartTime, setQuizStartTime] = useState<Date | null>(null);
@@ -188,140 +189,168 @@ const Quiz = () => {
       <Navbar />
 
       <main className="flex-grow pt-24 pb-16">
-        <div className="container-custom flex flex-row gap-6">
-          {/* كرت الكويز */}
-          <div className="flex-1 max-w-3xl">
-            {!isStarted ? (
-              <Card>
-                <CardHeader>
-                  <CardTitle className="text-2xl font-bold">
-                    {t("quiz.title")}
-                  </CardTitle>
-                  <CardDescription>{t("quiz.description")}</CardDescription>
-                </CardHeader>
-                <CardContent className="space-y-6">
-                  <div className="space-y-2">
-                    <Label htmlFor="language">{t("quiz.selectLanguage")}</Label>
-                    <Select value={language} onValueChange={handleLanguageChange}>
-                      <SelectTrigger id="language">
-                        <SelectValue placeholder={t("quiz.chooseLanguage")} />
-                      </SelectTrigger>
-                      <SelectContent>
-                        {languages.map((lang) => (
-                          <SelectItem key={lang} value={lang}>
-                            {lang}
-                          </SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
-                  </div>
-                  <div className="space-y-2">
-                    <Label htmlFor="questionCount">{t("quiz.questionCount")}</Label>
-                    <Select value={questionCount} onValueChange={handleQuestionCountChange}>
-                      <SelectTrigger id="questionCount">
-                        <SelectValue placeholder={t("quiz.chooseNumber")} />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="5">5 {t("quiz.questionCount")}</SelectItem>
-                        <SelectItem value="10">10 {t("quiz.questionCount")}</SelectItem>
-                        <SelectItem value="20">20 {t("quiz.questionCount")}</SelectItem>
-                        <SelectItem value="50">50 {t("quiz.questionCount")}</SelectItem>
-                        <SelectItem value="100">100 {t("quiz.questionCount")}</SelectItem>
-                      </SelectContent>
-                    </Select>
-                  </div>
-                </CardContent>
-                <CardFooter>
-                  <Button onClick={startQuiz} className="w-full" disabled={loading}>
-                    {loading ? t("quiz.loading") : t("quiz.startQuiz")}
-                  </Button>
-                </CardFooter>
-              </Card>
-            ) : isFinished ? (
-              <QuizResult
-                score={calculateScore()}
-                onRestart={restartQuiz}
-                timeSpent={
-                  quizStartTime && quizEndTime
-                    ? Math.floor((quizEndTime.getTime() - quizStartTime.getTime()) / 1000)
-                    : 0
-                }
-                questions={quizQuestions}
-                answers={selectedAnswers}
-              />
-            ) : (
-              <Card>
-                <CardHeader>
-                  <div className="flex justify-between items-center">
-                    <CardTitle className="text-xl font-bold">
-                      {t("quiz.question")} {currentQuestionIndex + 1} {t("quiz.of")}{" "}
-                      {quizQuestions.length}
-                    </CardTitle>
-                    <div className="flex items-center gap-2">
-                      <span className="px-2 py-1 bg-primary/10 text-primary rounded text-sm font-medium">
-                        {currentQuestion.language}
-                      </span>
-                      <Badge
-                        variant="outline"
-                        className={
-                          currentQuestion.difficulty === "easy"
-                            ? "bg-green-50 text-green-700 border-green-100"
-                            : currentQuestion.difficulty === "medium"
-                            ? "bg-yellow-50 text-yellow-700 border-yellow-100"
-                            : "bg-red-50 text-red-700 border-red-100"
-                        }
-                      >
-                        {t(`difficulty: ${currentQuestion.difficulty}`)}
-                      </Badge>
-                    </div>
-                  </div>
-                  <Progress
-                    value={((currentQuestionIndex + 1) / quizQuestions.length) * 100}
-                    className="h-2"
-                  />
-                </CardHeader>
-                <CardContent className="space-y-6">
-                  <p className="text-lg font-medium">{currentQuestion.questionText}</p>
-                  <RadioGroup
-                    value={selectedChoiceIndex !== undefined ? selectedChoiceIndex.toString() : ""}
-                    onValueChange={(value) => handleAnswerSelect(parseInt(value))}
-                    className="space-y-3"
+        <div className="container-custom max-w-4xl">
+          {!isStarted ? (
+            <Card>
+              <CardHeader>
+                <CardTitle className="text-2xl font-bold">
+                  {t("quiz.title")}
+                </CardTitle>
+                <CardDescription>{t("quiz.description")}</CardDescription>
+              </CardHeader>
+              <CardContent className="space-y-6">
+                <div className="space-y-2">
+                  <Label htmlFor="language">{t("quiz.selectLanguage")}</Label>
+                  <Select value={language} onValueChange={handleLanguageChange}>
+                    <SelectTrigger id="language">
+                      <SelectValue placeholder={t("quiz.chooseLanguage")} />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {languages.map((lang) => (
+                        <SelectItem key={lang} value={lang}>
+                          {lang}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="questionCount">
+                    {t("quiz.questionCount")}
+                  </Label>
+                  <Select
+                    value={questionCount}
+                    onValueChange={handleQuestionCountChange}
                   >
-                    {currentQuestion.choices.map((choice: any, index: number) => (
-                      <div
-                        key={index}
-                        className={`flex items-center space-x-2 p-3 rounded-md border ${
-                          selectedChoiceIndex === index
-                            ? "border-primary bg-primary/5"
-                            : "hover:bg-gray-50"
-                        }`}
-                      >
-                        <RadioGroupItem value={index.toString()} id={`option-${index}`} />
-                        <Label htmlFor={`option-${index}`} className="flex-grow cursor-pointer">
-                          {choice.text}
-                        </Label>
-                      </div>
-                    ))}
-                  </RadioGroup>
-                </CardContent>
-                <CardFooter className="flex justify-between">
-                  <Button variant="outline" onClick={restartQuiz}>
-                    {t("quiz.restartQuiz")}
-                  </Button>
-                  <Button onClick={nextQuestion} disabled={!isAnswerSelected}>
-                    {currentQuestionIndex + 1 === quizQuestions.length
-                      ? t("quiz.finishQuiz")
-                      : t("quiz.nextQuestion")}
-                  </Button>
-                </CardFooter>
-              </Card>
-            )}
-          </div>
+                    <SelectTrigger id="questionCount">
+                      <SelectValue placeholder={t("quiz.chooseNumber")} />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="5">
+                        5 {t("quiz.questionCount")}
+                      </SelectItem>
+                      <SelectItem value="10">
+                        10 {t("quiz.questionCount")}
+                      </SelectItem>
+                      <SelectItem value="20">
+                        20 {t("quiz.questionCount")}
+                      </SelectItem>
+                      <SelectItem value="50">
+                        50 {t("quiz.questionCount")}
+                      </SelectItem>
+                      <SelectItem value="100">
+                        100 {t("quiz.questionCount")}
+                      </SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+              </CardContent>
+              <CardFooter>
+                <Button
+                  onClick={startQuiz}
+                  className="w-full"
+                  disabled={loading}
+                >
+                  {loading ? t("quiz.loading") : t("quiz.startQuiz")}
+                </Button>
+              </CardFooter>
+            </Card>
+          ) : isFinished ? (
+            <QuizResult
+              score={calculateScore()}
+              onRestart={restartQuiz}
+              timeSpent={
+                quizStartTime && quizEndTime
+                  ? Math.floor(
+                      (quizEndTime.getTime() - quizStartTime.getTime()) / 1000
+                    )
+                  : 0
+              }
+              questions={quizQuestions}
+              answers={selectedAnswers}
+            />
+          ) : (
+            <Card>
+              <CardHeader>
+                <div className="flex justify-between items-center">
+                  <CardTitle className="text-xl font-bold">
+                    {t("quiz.question")} {currentQuestionIndex + 1}{" "}
+                    {t("quiz.of")} {quizQuestions.length}
+                  </CardTitle>
+                  <div className="flex items-center gap-2">
+                    <span className="px-2 py-1 bg-primary/10 text-primary rounded text-sm font-medium">
+                      {currentQuestion.language}
+                    </span>
+                    <Badge
+                      variant="outline"
+                      className={
+                        currentQuestion.difficulty === "easy"
+                          ? "bg-green-50 text-green-700 border-green-100"
+                          : currentQuestion.difficulty === "medium"
+                          ? "bg-yellow-50 text-yellow-700 border-yellow-100"
+                          : "bg-red-50 text-red-700 border-red-100"
+                      }
+                    >
+                      {t(`difficulty: ${currentQuestion.difficulty}`)}
+                    </Badge>
+                  </div>
+                </div>
+                <Progress
+                  value={
+                    ((currentQuestionIndex + 1) / quizQuestions.length) * 100
+                  }
+                  className="h-2"
+                />
+              </CardHeader>
+              <CardContent className="space-y-6">
+                <p className="text-lg font-medium">
+                  {currentQuestion.questionText}
+                </p>
 
-          {/* إعلان على اليمين - يظهر فقط على الشاشات الكبيرة */}
-          <div className="w-[300px] hidden lg:block">
-            <ManyAdRelaxed />
-          </div>
+                <RadioGroup
+                  value={
+                    selectedChoiceIndex !== undefined
+                      ? selectedChoiceIndex.toString()
+                      : ""
+                  }
+                  onValueChange={(value) => handleAnswerSelect(parseInt(value))}
+                  className="space-y-3"
+                >
+                  {currentQuestion.choices.map((choice: any, index: number) => (
+                    <div
+                      key={index}
+                      className={`flex items-center space-x-2 p-3 rounded-md border ${
+                        selectedChoiceIndex === index
+                          ? "border-primary bg-primary/5"
+                          : "hover:bg-gray-50"
+                      }`}
+                    >
+                      <RadioGroupItem
+                        value={index.toString()}
+                        id={`option-${index}`}
+                      />
+                      <Label
+                        htmlFor={`option-${index}`}
+                        className="flex-grow cursor-pointer"
+                      >
+                        {choice.text}
+                      </Label>
+                    </div>
+                  ))}
+                </RadioGroup>
+              </CardContent>
+              <CardFooter className="flex justify-between">
+                <Button variant="outline" onClick={restartQuiz}>
+                  {t("quiz.restartQuiz")}
+                </Button>
+                <Button onClick={nextQuestion} disabled={!isAnswerSelected}>
+                  {currentQuestionIndex + 1 === quizQuestions.length
+                    ? t("quiz.finishQuiz")
+                    : t("quiz.nextQuestion")}
+                </Button>
+              </CardFooter>
+            </Card>
+          )}
         </div>
       </main>
 
