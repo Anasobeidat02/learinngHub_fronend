@@ -4,7 +4,7 @@ import BioSection from "@/components/about/BioSection";
 import SkillsSection from "@/components/about/SkillsSection";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-import AdComponent from "../components/adds/PicAdComponent";
+
 
 const About = () => {
   return (
@@ -23,12 +23,7 @@ const About = () => {
                 Full Stack Developer, Educator, and Content Creator
               </p>
 
-              {/* الإعلان تحت النص ومحاذي لليمين */}
-              <div className="flex justify-end">
-                <div className="max-w-[300px] w-full">
-                  <AdComponent />
-                </div>
-              </div>
+
             </div>
           </div>
         </section>
