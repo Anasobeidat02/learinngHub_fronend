@@ -120,7 +120,7 @@ const Quiz = () => {
 
     if (selectedQuestions.length < parseInt(questionCount)) {
       toast({
-        description: `Only ${selectedQuestions.length} questions available for ${language}.`,
+        description: `Only ${selectedQuestions.length} questions available for ${language}.Starting quiz with available questions.`,
       });
     }
 
