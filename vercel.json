@@ -2,11 +2,18 @@
   "rewrites": [
     {
       "source": "/(.*)",
-      "destination": "/"
+      "has": [
+        {
+          "type": "header",
+          "key": "user-agent",
+          "value": "(googlebot|bingbot|yandex|baiduspider|twitterbot|facebookexternalhit|rogerbot|linkedinbot|embedly|quora|pinterest|slackbot|vkshare|whatsapp|telegrambot)"
+        }
+      ],
+      "destination": "https://service.prerender.io/https://www.learnhubjo.com/$1?token=N3toPBnsGklfwOWo7bUt"
     },
     {
-      "source": "/programming-languages",
-      "destination": "https://service.prerender.io?token=N3toPBnsGklfwOWo7bUt"
+      "source": "/(.*)",
+      "destination": "/"
     }
   ],
   "headers": [
