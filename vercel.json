@@ -1,6 +1,13 @@
 {
   "rewrites": [
-    { "source": "/(.*)", "destination": "/" }
+    {
+      "source": "/(.*)",
+      "destination": "/"
+    },
+    {
+      "source": "/programming-languages",
+      "destination": "https://service.prerender.io?token=N3toPBnsGklfwOWo7bUt"
+    }
   ],
   "headers": [
     {
