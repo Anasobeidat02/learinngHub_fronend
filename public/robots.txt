@@ -10,6 +10,18 @@ Allow: /
 User-agent: facebookexternalhit
 Allow: /
 
+User-agent: Baiduspider
+Allow: /
+
+User-agent: YandexBot
+Allow: /
+
+User-agent: SemrushBot
+Allow: /
+
+User-agent: AhrefsBot
+Allow: /
+
 User-agent: *
 Allow: /
 
